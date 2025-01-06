@@ -5,12 +5,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class TopTrumpTests {
     @Test
     void assertRockBeatsScissors() {
-        assertTrue(Move.beats(Move.ROCK, Move.SISSORS));
+        assertTrue(Move.beats(Move.ROCK, Move.SCISSORS));
     }
 
     @Test
     void assertScissorsBeatsPaper() {
-        assertTrue(Move.beats(Move.SISSORS, Move.PAPER));
+        assertTrue(Move.beats(Move.SCISSORS, Move.PAPER));
     }
 
     @Test
