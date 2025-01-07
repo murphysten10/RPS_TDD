@@ -14,6 +14,9 @@ public class Game {
         if(Move.beats(p1move,p2move)){
             winner = one;
         }
+        else if(Move.beats(p2move,p1move)){
+            winner = two;
+        }
     }
     public Player getWinner(){
         return winner;

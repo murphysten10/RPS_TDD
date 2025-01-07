@@ -1,4 +1,5 @@
 
-public abstract class Player {
-    public abstract int playMove();
+public interface Player {
+    int playMove();
 }
+

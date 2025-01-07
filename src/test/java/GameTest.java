@@ -29,7 +29,7 @@ public class GameTest {
 
     }
 
-    private static class ConstantMovePlayer extends Player {
+    private static class ConstantMovePlayer implements Player {
 
         private final int move;
 
