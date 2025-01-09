@@ -5,17 +5,18 @@ import java.io.PrintStream;
 import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 class HumanPlayerTest {
     public static final String EXPECTED_INPUT = "1 for Rock, 2 for Paper, 3 for Scissors" + System.lineSeparator();
+    public PrintStream outputStream = mock(PrintStream.class);
 
     @Test
     void playMoveShouldPrintMessage(){
-
-        var outputStream = new ByteArrayOutputStream();
-        var player = new HumanPlayer(new PrintStream(outputStream), new Scanner("1"));
+        var player = new HumanPlayer(outputStream, new Scanner("1"));
         player.playMove();
-        assertEquals(EXPECTED_INPUT, outputStream.toString());
+        verify(outputStream).println("1 for Rock, 2 for Paper, 3 for Scissors");
     }
     @Test
     void playMoveShouldReturnRockWhenInputIs1(){

@@ -11,4 +11,9 @@ public class ComputerPlayer implements Player {
     public int playMove() {
         return random.nextInt(3);
     }
+
+    @Override
+    public String toString() {
+        return "Computer ";
+    }
 }

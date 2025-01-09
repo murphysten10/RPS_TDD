@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TopTrumpTests {
+
     @Test
     void assertRockBeatsScissors() {
         assertTrue(Move.beats(Move.ROCK, Move.SCISSORS));

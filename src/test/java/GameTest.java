@@ -1,32 +1,61 @@
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.*;
 
 public class GameTest {
+
+    Game.EventListener mockEventListener = mock(Game.EventListener.class);
+    Player playsRock = mock(ComputerPlayer.class);
+    Player playsScissors = mock(ComputerPlayer.class);
+    private Player playsRockThenScissors = mock(ComputerPlayer.class);
+
+    @BeforeEach
+    void initialiseMockPlayers(){
+        when(playsRock.playMove()).thenReturn(Move.ROCK);
+        when(playsScissors.playMove()).thenReturn(Move.SCISSORS);
+        when(playsRockThenScissors.playMove()).thenReturn(Move.ROCK).thenReturn(Move.SCISSORS);
+    }
+
     @Test
     void player1CanBeatPlayer2(){
         //Arrange
-        Player playsRock = new ConstantMovePlayer(Move.ROCK);
-        Player playsScissors = new ConstantMovePlayer(Move.SCISSORS);
-        Game game = new Game(playsRock, playsScissors);
+        Game game = new Game(playsRock, playsScissors, mockEventListener);
         //Act
         game.play();
         //Assert
-        assertEquals(playsRock, game.getWinner());
-
+        verify(mockEventListener).playerWins(playsRock);
     }
     @Test
     void player2CanBeatPlayer1(){
         //Arrange
-        Player playsRock = new ConstantMovePlayer(Move.ROCK);
-        Player playsScissors = new ConstantMovePlayer(Move.SCISSORS);
-        Game game = new Game(playsScissors, playsRock);
-        //Act
+        Game game = new Game(playsScissors, playsRock, mockEventListener);
         game.play();
         //Assert
-        assertEquals(playsRock, game.getWinner());
+        verify(mockEventListener).playerWins(playsRock);
+    }
 
+    @Test
+    void gameShouldDraw(){
+        Game game = new Game(playsRockThenScissors, playsRock, mockEventListener);
+        game.play();
+        verify(mockEventListener).playersCanDraw();
+    }
+
+    @Test
+    void drawShouldReplay(){
+        Game game = new Game(playsRockThenScissors, playsRock, mockEventListener);
+        game.play();
+        verify(mockEventListener).playersCanDraw();
+    }
+
+    @Test
+    void playerOneMoveShouldBeReported(){
+        Game game = new Game(playsRock, playsScissors, mockEventListener);
+        game.play();
+        verify(mockEventListener).playerChoseMove(playsRock, Move.ROCK);
     }
 
     private static class ConstantMovePlayer implements Player {

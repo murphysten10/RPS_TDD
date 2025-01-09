@@ -16,4 +16,9 @@ public class HumanPlayer implements Player {
         printStream.println("1 for Rock, 2 for Paper, 3 for Scissors");
         return scanner.nextInt()-1;
     }
+
+    @Override
+    public String toString() {
+        return "Human ";
+    }
 }
