@@ -1,6 +1,5 @@
 import org.junit.jupiter.api.Test;
 
-import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
 
@@ -34,11 +33,10 @@ class HumanPlayerTest {
         doReturnValueTest(Move.SCISSORS, "3");
     }
 
-    private static void doReturnValueTest(int expected, String input) {
-        var outputStream = new ByteArrayOutputStream();
-        var player = new HumanPlayer(new PrintStream(outputStream), new Scanner(input));
-        int move = player.playMove();
-        assertEquals(expected, move);
+    private void doReturnValueTest(Move expected, String input) {
+        var player = new HumanPlayer(outputStream, new Scanner(input));
+        Move move = player.playMove();
+        assertEquals(expected.toString(), move.toString());
     }
 
 }

@@ -1,5 +1,8 @@
 
 public interface Player {
-    int playMove();
+    Move playMove();
+
+    Celebration performCelebration();
+
 }
 

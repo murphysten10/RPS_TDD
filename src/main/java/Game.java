@@ -1,32 +1,37 @@
-import java.io.PrintStream;
-
 public class Game {
     private final Player one;
     private final Player two;
     private Player winner;
-    private EventListener mockEventListener;
+    private EventListener eventListener;
 
-    public Game(Player one, Player two, EventListener mockEventListener){
+
+    public Game(Player one, Player two, EventListener eventListener){
         this.one = one;
         this.two = two;
-        this.mockEventListener = mockEventListener;
+        this.eventListener = eventListener;
     }
     public void play() {
-        while (winner == null) {
 
-            int p1move = one.playMove();
-            int p2move = two.playMove();
-            mockEventListener.playerChoseMove(one, p1move);
-            if (Move.beats(p1move, p2move)) {
-                winner = one;
-                //mockEventListener.playerWins(one);
-            } else if (Move.beats(p2move, p1move)) {
-                winner = two;
-            } else {
-                mockEventListener.playersCanDraw();
-            }
+            while (winner == null) {
 
-        } mockEventListener.playerWins(winner);
+                Move p1move = one.playMove();
+                Move p2move = two.playMove();
+                eventListener.playerChoseMove(one, p1move);
+                eventListener.playerChoseMove(two, p2move);
+
+                if (p1move.beats(p2move)) {
+                    winner = one;
+
+                    //one.performCelebration();
+                    //mockEventListener.playerWins(one);
+                } else if (p2move.beats(p1move)) {
+                    winner = two;
+                    //two.performCelebration();
+                } else {
+                    eventListener.playersCanDraw();
+                }
+            eventListener.playerWins(winner);
+        }
     }
 
 
@@ -35,10 +40,10 @@ public class Game {
 //    }
 
     public interface EventListener{
-        public void playerChoseMove(Player playsRock, int rock);
+        void playerChoseMove(Player playsRock, Move rock);
 
-        public void playerWins(Player playsRock);
+        void playerWins(Player playsRock);
 
-        public void playersCanDraw();
+        void playersCanDraw();
     }
 }

@@ -9,15 +9,15 @@ public class PrintingEventListener implements Game.EventListener {
     }
 
     @Override
-    public void playerChoseMove(Player player, int move) {
-        printStream.println(player.toString() + "chose " + moves[move] );
+    public void playerChoseMove(Player player, Move move) {
+        printStream.println(player.toString() + "chose " + move.toString().toLowerCase() );
 
     }
 
     @Override
     public void playerWins(Player winner) {
         printStream.println(winner.toString() + "wins!");
-
+        printStream.println(winner.performCelebration());
     }
 
     @Override
@@ -25,4 +25,5 @@ public class PrintingEventListener implements Game.EventListener {
         printStream.println("It's a draw!");
 
     }
+
 }

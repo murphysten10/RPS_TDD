@@ -1,9 +1,7 @@
 import org.junit.jupiter.api.Test;
 
 import java.io.PrintStream;
-import java.util.Scanner;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
@@ -17,7 +15,7 @@ class PrintingEventListenerTest {
     @Test
     void playerChoseMove() {
         printingEventListener.playerChoseMove(computerPlayer, Move.ROCK);
-        verify(printStream).println("Computer chose Rock");
+        verify(printStream).println("Computer chose rock");
     }
 
     @Test

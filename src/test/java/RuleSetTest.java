@@ -3,25 +3,25 @@ import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class TopTrumpTests {
+public class RuleSetTest {
 
     @Test
     void assertRockBeatsScissors() {
-        assertTrue(Move.beats(Move.ROCK, Move.SCISSORS));
+        assertTrue(Move.ROCK.beats(Move.SCISSORS));
     }
 
     @Test
     void assertScissorsBeatsPaper() {
-        assertTrue(Move.beats(Move.SCISSORS, Move.PAPER));
+        assertTrue(Move.SCISSORS.beats(Move.PAPER));
     }
 
     @Test
     void assertPaperBeatsRock() {
-        assertTrue(Move.beats(Move.PAPER, Move.ROCK));
+        assertTrue(Move.PAPER.beats(Move.ROCK));
     }
 
     @Test
     void assertPaperDoesntBeatRock(){
-        assertFalse(Move.beats(Move.PAPER, Move.SCISSORS));
+        assertFalse(Move.PAPER.beats(Move.SCISSORS));
     }
 }

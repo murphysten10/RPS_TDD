@@ -1,4 +1,3 @@
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Random;
@@ -18,22 +17,22 @@ class ComputerPlayerTest {
     @Test
     void playMoveShouldReturnScissorsWhenRandIs2() {
         var player = new ComputerPlayer(initialiseRandom(2));
-        int move = player.playMove();
-        assertEquals(move, Move.SCISSORS);
+        Move move = player.playMove();
+        assertEquals(move.toString(), Move.SCISSORS.toString());
     }
 
     @Test
     void playMoveShouldReturnPaperWhenRandIs1() {
         var player = new ComputerPlayer(initialiseRandom(1));
-        int move = player.playMove();
-        assertEquals(move, Move.PAPER);
+        Move move = player.playMove();
+        assertEquals(move.toString(), Move.PAPER.toString());
     }
 
     @Test
     void playMoveShouldReturnRockWhenRandIs0() {
         var player = new ComputerPlayer(initialiseRandom(0));
-        int move = player.playMove();
-        assertEquals(move, Move.ROCK);
+        Move move = player.playMove();
+        assertEquals(move.toString(), Move.ROCK.toString());
     }
 
 //    private static void doPlayMoveTest(int expected, int fakeRandom) {

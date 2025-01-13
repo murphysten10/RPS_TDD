@@ -12,13 +12,18 @@ public class HumanPlayer implements Player {
     }
 
     @Override
-    public int playMove() {
+    public Move playMove() {
         printStream.println("1 for Rock, 2 for Paper, 3 for Scissors");
-        return scanner.nextInt()-1;
+        return Move.values()[scanner.nextInt()-1];
     }
 
     @Override
     public String toString() {
         return "Human ";
+    }
+
+    @Override
+    public Celebration performCelebration() {
+        return Celebration.values()[0];
     }
 }

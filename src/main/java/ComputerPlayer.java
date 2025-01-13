@@ -8,12 +8,18 @@ public class ComputerPlayer implements Player {
     }
 
     @Override
-    public int playMove() {
-        return random.nextInt(3);
+    public Move playMove() {
+        return Move.values()[random.nextInt(3)];
+    }
+
+    @Override
+    public Celebration performCelebration() {
+        return Celebration.values()[0];
     }
 
     @Override
     public String toString() {
         return "Computer ";
     }
+
 }

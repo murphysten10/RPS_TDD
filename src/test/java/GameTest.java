@@ -58,24 +58,4 @@ public class GameTest {
         verify(mockEventListener).playerChoseMove(playsRock, Move.ROCK);
     }
 
-    private static class ConstantMovePlayer implements Player {
-
-        private final int move;
-
-        public ConstantMovePlayer(int move){
-            this.move = move;
-        }
-
-        @Override
-        public int playMove() {
-            return move;
-        }
-
-        @Override
-        public String toString() {
-            return "ConstantMovePlayer{" +
-                    "move=" + move +
-                    '}';
-        }
-    }
 }
